@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <audio src="https://b.top4top.io/m_3339uz9r21.mp3" autoplay loop hidden  ></audio>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NV Garments | Coming Soon</title>
@@ -11,26 +9,20 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       background: #050010;
       height: 100vh;
-      overflow: hidden;
+      overflow-x: hidden;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
       font-family: 'Orbitron', sans-serif;
-      position: relative;
       color: #00ffff;
+      position: relative;
     }
 
-    /* RGB neon animation for title */
     @keyframes rgbNeon {
       0% { color: #ff0000; text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 40px #ff0000; }
       33% { color: #00ff00; text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 40px #00ff00; }
@@ -38,35 +30,11 @@
       100% { color: #ff0000; text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 40px #ff0000; }
     }
 
-    h1 {
-      font-size: 3rem;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      animation: rgbNeon 3s infinite linear;
-    }
+    h1 { font-size: 3rem; text-transform: uppercase; letter-spacing: 3px; animation: rgbNeon 3s infinite linear; }
+    h2 { font-size: 2rem; margin-top:10px; text-transform: uppercase; animation: rgbNeon 2s infinite linear; text-align: center; }
+    h3 { font-size: 1.2rem; margin-top: 5px; text-transform: uppercase; color: #00ffff; text-shadow: 0 0 10px #00ffff; }
 
-    h2 {
-      font-size: 2rem;
-      margin-top:10px;
-      text-transform: uppercase;
-      animation: rgbNeon 2s infinite linear;
-      text-align: center;
-    }
-
-    h3 {
-      font-size: 1.2rem;
-      margin-top: 5px;
-      text-transform: uppercase;
-      color: #00ffff;
-      text-shadow: 0 0 10px #00ffff;
-    }
-
-    .countdown {
-      margin-top: 25px;
-      font-size: 1.3rem;
-      color: #fff;
-      text-shadow: 0 0 10px #00ffff;
-    }
+    .countdown { margin-top: 25px; font-size: 1.3rem; color: #fff; text-shadow: 0 0 10px #00ffff; }
 
     input[type="email"] {
       margin-top: 25px;
@@ -80,9 +48,7 @@
       outline: none;
     }
 
-    input::placeholder {
-      color: #999;
-    }
+    input::placeholder { color: #999; }
 
     button {
       margin-top: 15px;
@@ -97,14 +63,11 @@
       transition: 0.3s;
     }
 
-    button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px #00ffff, 0 0 40px #ff00ff;
-    }
+    button:hover { transform: scale(1.05); box-shadow: 0 0 20px #00ffff, 0 0 40px #ff00ff; }
 
     .para {
-      position: absolute;
-      bottom: 20px;
+      position: relative;
+      margin-top: 30px;
       font-size: 0.9rem;
       letter-spacing: 1px;
       text-align: center;
@@ -112,12 +75,8 @@
       color: #aaa;
     }
 
-    .para a {
-      color: #ff00ff;
-      text-decoration: none;
-    }
+    .para a { color: #ff00ff; text-decoration: none; }
 
-    /* Grid overlay */
     .grid-lines {
       position: absolute;
       top: 0;
@@ -132,32 +91,27 @@
       animation: moveGrid 10s linear infinite;
     }
 
-    @keyframes moveGrid {
-      0% { background-position: 0 0; }
-      100% { background-position: 60px 60px; }
-    }
+    @keyframes moveGrid { 0% { background-position: 0 0; } 100% { background-position: 60px 60px; } }
 
-    /* Particle canvas */
-    #particles {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      background: #050010;
-    }
+    #particles { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: #050010; }
 
-    .content {
-      text-align: center;
-      position: relative;
-      z-index: 1;
+    .content { text-align: center; position: relative; z-index: 1; padding-bottom: 60px; }
+
+    @media screen and (max-width: 768px) {
+      h1 { font-size: 2rem; }
+      h2 { font-size: 1.5rem; }
+      h3 { font-size: 1rem; }
+      .countdown { font-size: 1rem; }
+      input[type="email"] { width: 200px; }
     }
   </style>
 </head>
 <body>
 
+  <!-- Audio -->
+  <audio id="bg-music" src="https://b.top4top.io/m_3339uz9r21.mp3" loop></audio>
 
+  <!-- Particles and Grid -->
   <canvas id="particles"></canvas>
   <div class="grid-lines"></div>
 
@@ -165,20 +119,19 @@
     <h1>NV GARMENTS</h1>
     <h3>PATHANAPURAM</h3>
     <h2>COMING SOON...!</h2>
-    
-    <br>
-
     <h3>PLEASE WAIT FOR THE WEBSITE LAUNCH...!</h3>
+
     <div class="countdown" id="countdown">Loading...</div>
 
-    <form>
-      <input type="email" placeholder="Enter your email" />
+    <form id="notify-form">
+      <input type="email" placeholder="Enter your email" required />
       <br />
       <button type="submit">Notify Me</button>
     </form>
+<br>
+<br>
+    <p class="para">© 2025 NV Garments | DEVELOPER <a href="https://sh4dowbroker.github.io" target="_blank">SHADOWBROKER</a></p>
   </div>
-
-  <p class="para">© 2025 NV Garments | DEVELOPER <a href="https://sh4dowbroker.github.io" target="_blank">SHADOWBROKER</a></p>
 
   <script>
     // Countdown Timer
@@ -200,10 +153,8 @@
     const canvas = document.getElementById('particles');
     const ctx = canvas.getContext('2d');
     let particlesArray = [];
-
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-
     const colors = ['#00ffff', '#ff00ff', '#ff0000', '#00ff00', '#ff0080'];
 
     class Particle {
@@ -231,21 +182,22 @@
       }
     }
 
-    function init() {
-      particlesArray = [];
-      for (let i = 0; i < 120; i++) particlesArray.push(new Particle());
-    }
-
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particlesArray.forEach(p => { p.update(); p.draw(); });
-      requestAnimationFrame(animate);
-    }
-
+    function init() { particlesArray = []; for (let i = 0; i < 120; i++) particlesArray.push(new Particle()); }
+    function animate() { ctx.clearRect(0, 0, canvas.width, canvas.height); particlesArray.forEach(p => { p.update(); p.draw(); }); requestAnimationFrame(animate); }
     window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; init(); });
-
     init();
     animate();
+
+    // Play music when clicking "Notify Me"
+    const music = document.getElementById('bg-music');
+    const notifyForm = document.getElementById('notify-form');
+
+    notifyForm.addEventListener('submit', function(e) {
+      e.preventDefault(); // prevent default form submission
+      if (music.paused) music.play(); // play music
+      alert("Thank you! You'll be notified.");
+      notifyForm.reset();
+    });
   </script>
 </body>
 </html>
