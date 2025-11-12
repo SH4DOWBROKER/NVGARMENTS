@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <audio src="https://b.top4top.io/m_3339uz9r21.mp3" autoplay loop hidden></audio>
+    <audio src="https://b.top4top.io/m_3339uz9r21.mp3" autoplay loop hidden  ></audio>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NV Garments | Coming Soon</title>
 
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
 
+  <style>
     * {
       margin: 0;
       padding: 0;
@@ -42,11 +46,19 @@
     }
 
     h2 {
-      color: #ff00ff;
-      font-size: 1.5rem;
-      margin-top: 10px;
+      font-size: 2rem;
+      margin-top:10px;
       text-transform: uppercase;
-      text-shadow: 0 0 15px #ff00ff;
+      animation: rgbNeon 2s infinite linear;
+      text-align: center;
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      margin-top: 5px;
+      text-transform: uppercase;
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff;
     }
 
     .countdown {
@@ -90,14 +102,19 @@
       box-shadow: 0 0 20px #00ffff, 0 0 40px #ff00ff;
     }
 
-    para {
+    .para {
       position: absolute;
       bottom: 20px;
-      
       font-size: 0.9rem;
-      
       letter-spacing: 1px;
       text-align: center;
+      width: 100%;
+      color: #aaa;
+    }
+
+    .para a {
+      color: #ff00ff;
+      text-decoration: none;
     }
 
     /* Grid overlay */
@@ -140,13 +157,17 @@
 </head>
 <body>
 
+
   <canvas id="particles"></canvas>
   <div class="grid-lines"></div>
 
   <div class="content">
     <h1>NV GARMENTS</h1>
-   <h2>PATHANAPURAM</h2>
-    <h2>COMING SOON</h2>
+    <h3>PATHANAPURAM</h3>
+    <h2>COMING SOON...!</h2>
+    
+    <br>
+
     <h3>PLEASE WAIT FOR THE WEBSITE LAUNCH...!</h3>
     <div class="countdown" id="countdown">Loading...</div>
 
@@ -156,43 +177,34 @@
       <button type="submit">Notify Me</button>
     </form>
   </div>
- <p claass="para">© 2025 NV Garments | DEVELOPER  <a href="https://sh4dowbroker.github.io" target="_blank">SHADOWBROKER</a> </p>
 
-
+  <p class="para">© 2025 NV Garments | DEVELOPER <a href="https://sh4dowbroker.github.io" target="_blank">SHADOWBROKER</a></p>
 
   <script>
-    // Countdown for 20 days from now
-    const now = new Date().getTime();
-    const launchDate = now + (20 * 24 * 60 * 60 * 1000); // 20 days in ms
+    // Countdown Timer
+    const launchDate = new Date(new Date().getTime() + 20*24*60*60*1000).getTime();
     const countdownEl = document.getElementById("countdown");
 
-    const timer = setInterval(() => {
-      const currentTime = new Date().getTime();
-      const diff = launchDate - currentTime;
-
-      if (diff < 0) {
-        clearInterval(timer);
-        countdownEl.innerHTML = "We’re Live!";
-        return;
-      }
-
+    setInterval(() => {
+      const now = new Date().getTime();
+      const diff = launchDate - now;
+      if (diff < 0) { countdownEl.innerHTML = "We’re Live!"; return; }
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
       const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
       const secs = Math.floor((diff % (1000 * 60)) / 1000);
-
       countdownEl.innerHTML = `${days}d ${hours}h ${mins}m ${secs}s`;
     }, 1000);
 
-    // Neon particles animation
+    // Particle Canvas
     const canvas = document.getElementById('particles');
     const ctx = canvas.getContext('2d');
-    let particlesArray;
+    let particlesArray = [];
 
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    const colors = ['#00ffff', '#ff00ff', '#ff0000', '#00ff00', '#00ffff'];
+    const colors = ['#00ffff', '#ff00ff', '#ff0000', '#00ff00', '#ff0080'];
 
     class Particle {
       constructor() {
@@ -221,30 +233,19 @@
 
     function init() {
       particlesArray = [];
-      const numberOfParticles = 120;
-      for (let i = 0; i < numberOfParticles; i++) {
-        particlesArray.push(new Particle());
-      }
+      for (let i = 0; i < 120; i++) particlesArray.push(new Particle());
     }
 
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (let particle of particlesArray) {
-        particle.update();
-        particle.draw();
-      }
+      particlesArray.forEach(p => { p.update(); p.draw(); });
       requestAnimationFrame(animate);
     }
 
+    window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; init(); });
+
     init();
     animate();
-
-    window.addEventListener('resize', () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      init();
-    });
   </script>
-
 </body>
 </html>
