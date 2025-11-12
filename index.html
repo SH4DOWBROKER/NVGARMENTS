@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <audio src="https://b.top4top.io/m_3339uz9r21.mp3" autoplay loop hidden></audio>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NV Garments | Coming Soon</title>
-
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
 
@@ -18,57 +15,64 @@
     }
 
     body {
-      background: #1a1a1a; /* professional dark background */
-      height: 100vh;
-      overflow: hidden;
+      background: #1a1a1a;
+      min-height: 100vh;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
       font-family: 'Orbitron', sans-serif;
-      position: relative;
       color: #ffffff;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .content {
+      text-align: center;
+      z-index: 1;
+      width: 90%;
+      max-width: 500px;
     }
 
     h1 {
-      font-size: 3rem;
+      font-size: 2.5rem;
       text-transform: uppercase;
-      letter-spacing: 3px;
-      color: #2a9d8f; /* primary accent color */
+      letter-spacing: 2px;
+      color: #2a9d8f;
       text-shadow: 0 0 10px #2a9d8f;
     }
 
     h2 {
-      font-size: 2rem;
+      font-size: 1.8rem;
       margin-top: 10px;
       text-transform: uppercase;
       color: #ffffff;
-      text-align: center;
     }
 
     h3 {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       margin-top: 5px;
-      text-transform: uppercase;
-      color: #b0b0b0; /* secondary text */
+      color: #b0b0b0;
     }
 
     .countdown {
-      margin-top: 25px;
-      font-size: 1.3rem;
+      margin-top: 20px;
+      font-size: 1.2rem;
       color: #ffffff;
     }
 
     input[type="email"] {
-      margin-top: 25px;
+      margin-top: 20px;
       padding: 10px 15px;
-      width: 250px;
+      width: 90%;
+      max-width: 300px;
       background: #2a2a2a;
       border: 1px solid #2a9d8f;
       border-radius: 4px;
       color: #ffffff;
       text-align: center;
       outline: none;
+      font-size: 1rem;
     }
 
     input::placeholder {
@@ -94,13 +98,12 @@
     }
 
     .para {
-      position: absolute;
-      bottom: 20px;
-      font-size: 0.9rem;
-      letter-spacing: 1px;
+      font-size: 0.85rem;
       text-align: center;
-      width: 100%;
       color: #b0b0b0;
+      margin-top: 20px;
+      padding: 10px;
+      width: 100%;
     }
 
     .para a {
@@ -108,9 +111,22 @@
       text-decoration: none;
     }
 
-    /* Grid overlay */
+    #particles, #cursorParticles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    #particles {
+      background: #1a1a1a;
+    }
+
     .grid-lines {
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
@@ -128,46 +144,52 @@
       100% { background-position: 60px 60px; }
     }
 
-    #particles {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      background: #1a1a1a;
-    }
-
-    .content {
-      text-align: center;
-      position: relative;
-      z-index: 1;
+    @media(max-width: 480px) {
+      h1 { font-size: 2rem; }
+      h2 { font-size: 1.5rem; }
+      h3 { font-size: 1rem; }
+      .countdown { font-size: 1rem; }
+      input[type="email"] { font-size: 0.95rem; }
+      button { font-size: 0.95rem; padding: 8px 20px; }
     }
   </style>
 </head>
 <body>
 
   <canvas id="particles"></canvas>
+  <canvas id="cursorParticles"></canvas>
   <div class="grid-lines"></div>
 
   <div class="content">
     <h1>NV GARMENTS</h1>
     <h3>PATHANAPURAM</h3>
     <h2>COMING SOON...!</h2>
-    <br>
     <h3>PLEASE WAIT FOR THE WEBSITE LAUNCH...!</h3>
     <div class="countdown" id="countdown">Loading...</div>
 
     <form>
-      <input type="email" placeholder="Enter your email" />
+      <input type="email" id="email" placeholder="Enter your email" />
       <br />
       <button type="submit">Notify Me</button>
     </form>
+<br>
+<br>
+<br>
+
+    <p class="para">© 2025 NV Garments | DEVELOPER <a href="https://sh4dowbroker.github.io" target="_blank">SHADOWBROKER</a></p>
   </div>
 
-  <p class="para">© 2025 NV Garments | DEVELOPER <a href="https://sh4dowbroker.github.io" target="_blank">SHADOWBROKER</a></p>
+  <audio id="bgMusic" src="https://b.top4top.io/m_3339uz9r21.mp3" loop></audio>
 
   <script>
+    // Play music on email field focus
+    const emailInput = document.getElementById('email');
+    const music = document.getElementById('bgMusic');
+
+    emailInput.addEventListener('focus', () => {
+      music.play().catch(e => console.log('Music playback blocked:', e));
+    });
+
     // Countdown Timer
     const launchDate = new Date(new Date().getTime() + 20*24*60*60*1000).getTime();
     const countdownEl = document.getElementById("countdown");
@@ -183,14 +205,12 @@
       countdownEl.innerHTML = `${days}d ${hours}h ${mins}m ${secs}s`;
     }, 1000);
 
-    // Particle Canvas
+    // Background Particles
     const canvas = document.getElementById('particles');
     const ctx = canvas.getContext('2d');
     let particlesArray = [];
-
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-
     const colors = ['#2a9d8f', '#ffffff', '#b0b0b0'];
 
     class Particle {
@@ -229,10 +249,67 @@
       requestAnimationFrame(animate);
     }
 
-    window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; init(); });
+    window.addEventListener('resize', () => { 
+      canvas.width = window.innerWidth; 
+      canvas.height = window.innerHeight; 
+      init(); 
+    });
 
     init();
     animate();
+
+    // Cursor Particles
+    const cursorCanvas = document.getElementById('cursorParticles');
+    const cursorCtx = cursorCanvas.getContext('2d');
+    cursorCanvas.width = window.innerWidth;
+    cursorCanvas.height = window.innerHeight;
+
+    let cursorParticles = [];
+    class CursorParticle {
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.size = Math.random() * 4 + 2;
+        this.color = colors[Math.floor(Math.random() * colors.length)];
+        this.life = 50;
+      }
+      update() {
+        this.y -= 0.5;
+        this.x += (Math.random() - 0.5);
+        this.life--;
+        this.size *= 0.95;
+      }
+      draw() {
+        cursorCtx.beginPath();
+        cursorCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        cursorCtx.fillStyle = this.color;
+        cursorCtx.shadowBlur = 15;
+        cursorCtx.shadowColor = this.color;
+        cursorCtx.fill();
+      }
+    }
+
+    window.addEventListener('mousemove', (e) => {
+      cursorParticles.push(new CursorParticle(e.clientX, e.clientY));
+    });
+
+    function animateCursor() {
+      cursorCtx.clearRect(0, 0, cursorCanvas.width, cursorCanvas.height);
+      for (let i = cursorParticles.length - 1; i >= 0; i--) {
+        const p = cursorParticles[i];
+        p.update();
+        p.draw();
+        if (p.life <= 0) cursorParticles.splice(i, 1);
+      }
+      requestAnimationFrame(animateCursor);
+    }
+
+    window.addEventListener('resize', () => {
+      cursorCanvas.width = window.innerWidth;
+      cursorCanvas.height = window.innerHeight;
+    });
+
+    animateCursor();
   </script>
 </body>
 </html>
